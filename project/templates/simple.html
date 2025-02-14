@@ -103,31 +103,28 @@
         <div class="product-display">
             <!-- Image Gallery -->
             <div class="image-section">
-                <img src="/api/placeholder/500/500" alt="Eye Lash Main View" id="mainImage" class="main-image">
+                <img src="{{ product.images.main }}" alt="{{ product.name }}" id="mainImage" class="main-image">
                 <div class="thumbnails">
-                    <img src="{{  }}" alt="Angle 1" class="thumbnail" onclick="changeImage(this.src)">
-                    <img src="/api/placeholder/70/70" alt="Angle 2" class="thumbnail" onclick="changeImage(this.src)">
-                    <img src="/api/placeholder/70/70" alt="Angle 3" class="thumbnail" onclick="changeImage(this.src)">
-                    <img src="/api/placeholder/70/70" alt="Angle 4" class="thumbnail" onclick="changeImage(this.src)">
+                    {% for image in product.images.angles %}
+                    <img src="{{ image }}" alt="{{ product.name }} angle {{ forloop.counter }}" class="thumbnail" onclick="changeImage(this.src)">
+                    {% endfor %}
                 </div>
             </div>
 
             <!-- Product Details -->
             <div class="product-details">
-                <h1 class="product-title">Premium Eye Lash</h1>
-                <p class="product-price">$99.99</p>
+                <h1 class="product-title">{{ product.name }}</h1>
+                <p class="product-price">${{ product.price }}</p>
                 <div class="product-description">
-                    <p>Professional-grade eye lashes designed for comfort and durability. Perfect for both everyday wear and special occasions.</p>
+                    <p>{{ product.description }}</p>
                 </div>
 
                 <div class="features">
-                    <h3>Product Features</h3>
+                    <h3>Product Specifications</h3>
                     <ul>
-                        <li>✨ Long-lasting wear time</li>
-                        <li>💧 Waterproof design</li>
-                        <li>🔒 Solid construction</li>
-                        <li>❄️ Cold-resistant</li>
-                        <li>🌿 Skin-friendly materials</li>
+                        {% for spec in product.specifications %}
+                        <li>{{ spec.name }}: {{ spec.value }}</li>
+                        {% endfor %}
                     </ul>
                 </div>
             </div>
@@ -144,4 +141,3 @@
     </script>
 </body>
 </html>
-
