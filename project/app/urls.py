@@ -16,7 +16,7 @@ from . import views  # Replace 'yourapp' with your app name
 
 urlpatterns = [
     path('', RedirectView.as_view(url='/products/')),  # Redirect root to products
-    path('products/', views.products, name='products'),
-    path('product/<int:id>/', views.product_detail, name='product_detail'),
-    path('api/product/<int:id>/', views.product_api, name='product_api'),
+    path('products/', views.fetch_products, name='products'),
+    path('product/<int:id>/', views.fetch_product_detail, name='product_detail'),
+    path('api/product/<int:id>/', views.get_product_api, name='product_api'),
 ]
